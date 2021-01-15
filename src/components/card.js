@@ -1,22 +1,35 @@
+import axios from 'axios';
+
 const Card = (article) => {
-  // TASK 5
-  // ---------------------
-  // Implement this function, which should return the markup you see below.
-  // It takes as its only argument an "article" object with `headline`, `authorPhoto` and `authorName` properties.
-  // The tags used, the hierarchy of elements and their attributes must match the provided markup exactly!
-  // The text inside elements will be set using their `textContent` property (NOT `innerText`).
-  // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
-  //
-  // <div class="card">
-  //   <div class="headline">{ headline }</div>
-  //   <div class="author">
-  //     <div class="img-container">
-  //       <img src={ authorPhoto }>
-  //     </div>
-  //     <span>By { authorName }</span>
-  //   </div>
-  // </div>
-  //
+  const cDiv = document.createElement('div')
+  cDiv.classList.add('card')
+
+  const cardHead = document.createElement('div')
+  cardHead.textContent = `${article.headline}`
+  cardHead.classList.add('headline')
+  cDiv.appendChild(cardHead)
+
+  const Author = document.createElement('div')
+  Author.classList.add('author')
+  cDiv.appendChild(Author)
+
+  const cardImgContainer = document.createElement('div')
+  cardImgContainer.classList.add('img-container')
+  cDiv.appendChild(cardImgContainer)
+
+  const Img = document.createElement('img')
+  Img.src = `${article.authorPhoto}`
+  cardImgContainer.appendChild(Img)
+
+  const ImgSpan = document.createElement('span')
+  ImgSpan.textContent = `By ${article.authorName}`
+  cardImgContainer.appendChild(Img)
+
+  cDiv.addEventListener('click', (event) => {
+    console.log(`${article.headline}`)
+  })
+
+  return cDiv;
 }
 
 const cardAppender = (selector) => {
